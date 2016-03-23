@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flatironschool.javacs;
+//package com.flatironschool.javacs;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,17 +36,17 @@ public class MyArrayList<E> implements List<E> {
 		// run a few simple tests
 		MyArrayList<Integer> mal = new MyArrayList<Integer>();
 		mal.size =5;
-		////System.out.println(mal.size);
+		//System.out.println(mal.size);
 		mal.add(0,0);
 		mal.add(1,5);
-		////System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
+		System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
 		mal.add(2,2);
-		//System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
+		System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
 		
 		mal.remove(new Integer(2));
 		mal.set(3, 62);
-		//System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
-		//System.out.println(mal.indexOf(7)+"   hdsjf ");
+		System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
+		System.out.println(mal.indexOf(7)+"   hdsjf ");
 	}
 
 	@Override
@@ -71,20 +71,17 @@ public class MyArrayList<E> implements List<E> {
 		// TODO: fill in the rest of this method
 		if(size >= array.length){
 			bigger = (E[]) new Object[array.length*2];
-			//System.out.println("hey there doubling");
 		}
 		else{
 			bigger = (E[]) new Object[array.length+1];
 		}
 		System.arraycopy(array,0,bigger,0,index);
 		bigger[index] = element;
-		////System.out.println(array.length+" "+bigger.length);
-		System.arraycopy(array,index,bigger,index+1,array.length-index);
+		//System.out.println(array.length+" "+bigger.length);
+		//System.arraycopy(array,index,bigger,index+1,array.length-index);
 		array = bigger;
-		size++;
-		//System.out.println("Current size"+ size);
 		//for(int i=0;i<array.length;i++){
-			////System.out.println(array[i]);
+			//System.out.println(array[i]);
 		//}
 	}
 
@@ -135,14 +132,11 @@ public class MyArrayList<E> implements List<E> {
 	@Override
 	public int indexOf(Object target) {
 		// TODO: fill in this method
-		int n = size;
-		for(int i=0;i<size;i++)
+		int n = array.length;
+		for(int i=0;i<n;i++)
 		{
 			if(array[i]!=null && array[i].equals((E)target))
 				return i;
-			if(array[i]==null && target==null){
-				return i;
-			}
 		}
 		return -1;
 	}
@@ -218,13 +212,11 @@ public class MyArrayList<E> implements List<E> {
 		if(index <0 || index >size){
 			throw new IndexOutOfBoundsException();
 		}
-		E temp = array[index];
 		E[] narr = (E[]) new Object[array.length];
 		System.arraycopy(array,0,narr,0,index);
 		System.arraycopy(array,index+1,narr,index,array.length-index-1);
 		array = narr;
-		size--;
-		return temp; 
+		return null;
 	}
 
 	@Override
@@ -244,14 +236,13 @@ public class MyArrayList<E> implements List<E> {
 	@Override
 	public E set(int index, E element) {
 		// TODO: fill in this method.
-		if( index < 0 || index >= size)
+		if( index < 0 || index > size)
 		{
 			throw new IndexOutOfBoundsException();
 		}
 		E temp = array[index];
 		array[index] = element;
 		return temp;
-		//return null; 
 	}
 
 	@Override
